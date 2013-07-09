@@ -35,16 +35,6 @@ public class EventListenerUtils
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    private static <T> void registerEventListener(EventListenerRegistry registry, EventType<T> eventType, Object targetObject, Method targetMethod)
-    {
-        T listener = createListener(eventType, targetObject, targetMethod);
-        if (listener != null)
-        {
-            registry.appendListeners(eventType, listener);
-        }
-    }
-
     public static void registerAnnotatedListeners(EventListenerRegistry registry, Object targetObject)
     {
         for (Method targetMethod : targetObject.getClass().getDeclaredMethods())
@@ -55,5 +45,24 @@ public class EventListenerUtils
                 registerEventListener(registry, onEvent.value().getEventType(), targetObject, targetMethod);
             }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> void registerEventListener(EventListenerRegistry registry, EventType<T> eventType, Object targetObject, Method targetMethod)
+    {
+        T listener = createListener(eventType, targetObject, targetMethod);
+        if (listener != null)
+        {
+            registry.appendListeners(eventType, listener);
+        }
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+// Constructors
+//----------------------------------------------------------------------------------------------------------------------
+
+    private EventListenerUtils()
+    {
+        
     }
 }
