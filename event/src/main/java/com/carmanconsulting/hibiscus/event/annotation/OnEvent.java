@@ -15,6 +15,5 @@ public @interface OnEvent
 // Other Methods
 //----------------------------------------------------------------------------------------------------------------------
 
-    Class<?> entityType() default Object.class;
     EventTypeEnum value();
 }
