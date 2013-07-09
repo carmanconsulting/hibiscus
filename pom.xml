@@ -8,7 +8,7 @@
 
     <groupId>com.carmanconsulting.hibiscus</groupId>
     <artifactId>hibiscus-parent</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Hibiscus</name>
@@ -29,7 +29,7 @@
         <url>https://github.com/jwcarman/hibiscus</url>
         <connection>scm:git:git@github.com:jwcarman/hibiscus.git</connection>
         <developerConnection>scm:git:git@github.com:jwcarman/hibiscus.git</developerConnection>
-        <tag>hibiscus-parent-1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
