@@ -1,6 +1,6 @@
 package com.carmanconsulting.hibiscus.event.annotation;
 
-import com.carmanconsulting.hibiscus.event.EventTypeEnum;
+import com.carmanconsulting.hibiscus.event.types.EventTypeEnum;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

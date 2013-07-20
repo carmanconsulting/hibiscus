@@ -1,6 +1,6 @@
 package com.carmanconsulting.hibiscus.event.util;
 
-import com.carmanconsulting.hibiscus.event.EventTypeEnum;
+import com.carmanconsulting.hibiscus.event.types.EventTypeEnum;
 import com.carmanconsulting.hibiscus.event.annotation.EventListener;
 import com.carmanconsulting.hibiscus.event.annotation.OnEvent;
 import org.hibernate.event.spi.PostInsertEvent;

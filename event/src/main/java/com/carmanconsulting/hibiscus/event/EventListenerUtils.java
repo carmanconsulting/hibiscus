@@ -3,6 +3,7 @@ package com.carmanconsulting.hibiscus.event;
 import com.carmanconsulting.hibiscus.event.annotation.OnEvent;
 import com.carmanconsulting.hibiscus.event.invoker.EventObjectAppendedInvoker;
 import com.carmanconsulting.hibiscus.event.invoker.ExactMatchInvoker;
+import com.carmanconsulting.hibiscus.event.types.EventTypeEnum;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.proxy.ProxyFactory;
 import org.apache.commons.proxy.factory.javassist.JavassistProxyFactory;
@@ -10,13 +11,13 @@ import org.hibernate.event.service.spi.EventListenerRegistry;
 
 import java.lang.reflect.Method;
 
-public class EventListenerUtils
+public final class EventListenerUtils
 {
 //----------------------------------------------------------------------------------------------------------------------
 // Fields
 //----------------------------------------------------------------------------------------------------------------------
 
-    private static final ProxyFactory proxyFactory = new JavassistProxyFactory();
+    private static final ProxyFactory PROXY_FACTORY = new JavassistProxyFactory();
 
 //----------------------------------------------------------------------------------------------------------------------
 // Static Methods
@@ -29,11 +30,11 @@ public class EventListenerUtils
         {
             if (isExactMatch(proxyMethod, targetMethod))
             {
-                return (T) proxyFactory.createInvokerProxy(new ExactMatchInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[]{eventType.getEventType().baseListenerInterface()});
+                return (T) PROXY_FACTORY.createInvokerProxy(new ExactMatchInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[]{eventType.getEventType().baseListenerInterface()});
             }
             else if(isEventObjectAppendedMatch(proxyMethod, targetMethod))
             {
-                return (T) proxyFactory.createInvokerProxy(new EventObjectAppendedInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[] {eventType.getEventType().baseListenerInterface()});
+                return (T) PROXY_FACTORY.createInvokerProxy(new EventObjectAppendedInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[] {eventType.getEventType().baseListenerInterface()});
             }
         }
         return null;

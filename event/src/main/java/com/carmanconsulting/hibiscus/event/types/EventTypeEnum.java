@@ -1,4 +1,4 @@
-package com.carmanconsulting.hibiscus.event;
+package com.carmanconsulting.hibiscus.event.types;
 
 import org.hibernate.event.spi.*;
 

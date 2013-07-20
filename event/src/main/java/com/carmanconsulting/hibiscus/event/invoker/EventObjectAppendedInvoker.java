@@ -1,6 +1,6 @@
 package com.carmanconsulting.hibiscus.event.invoker;
 
-import com.carmanconsulting.hibiscus.event.EventTypeEnum;
+import com.carmanconsulting.hibiscus.event.types.EventTypeEnum;
 
 import java.lang.reflect.Method;
 
