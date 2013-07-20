@@ -26,9 +26,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/jwcarman/hibiscus</url>
-        <connection>scm:git:git@github.com:jwcarman/hibiscus.git</connection>
-        <developerConnection>scm:git:git@github.com:jwcarman/hibiscus.git</developerConnection>
+        <url>https://github.com/carmanconsulting/hibiscus</url>
+        <connection>scm:git:git@github.com:carmanconsulting/hibiscus.git</connection>
+        <developerConnection>scm:git:git@github.com:carmanconsulting/hibiscus.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
