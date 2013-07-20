@@ -42,8 +42,10 @@ This bean will search the Spring context for all @EventListener-annotated beans 
 
 ## Type-Safe Events
 
-Sometimes, you only want to handle events for certain entity types.  All you need to do is add a parameter to your event
-handler method for the entity type you wish to support.
+Sometimes, you only want to handle events for certain entity types.  To achieve this, all you need to do is add a
+parameter to your event handler method for the entity type you wish to support.  Hibiscus will automatically bind the
+entity object to this parameter when your event handler is called.  Your event handler will not be called for events
+with entities of a different type.
 
 ```java
 @EventListener
