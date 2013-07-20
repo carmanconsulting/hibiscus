@@ -7,7 +7,7 @@ your Spring-managed beans as Hibernate event listeners.
 ## Writing an Event Listener
 
 Writing an event listener is easy with Hibiscus!  All you have to do is annotate your bean class with the @EventListener
-annotation (which allows it to be "scanned" by Spring) and annotate each event handler method with an @OnEvent
+annotation (which also allows it to be "scanned" by Spring) and annotate each event handler method with an @OnEvent
 annotation.
 
 ```java
