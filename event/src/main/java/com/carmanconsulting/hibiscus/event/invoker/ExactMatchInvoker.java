@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventListenerInvoker implements Invoker
+public class ExactMatchInvoker implements Invoker
 {
 //----------------------------------------------------------------------------------------------------------------------
 // Fields
@@ -50,7 +50,7 @@ public class EventListenerInvoker implements Invoker
 // Constructors
 //----------------------------------------------------------------------------------------------------------------------
 
-    public EventListenerInvoker(EventTypeEnum eventType, Object targetObject, Method targetMethod, Method proxyMethod)
+    public ExactMatchInvoker(EventTypeEnum eventType, Object targetObject, Method targetMethod, Method proxyMethod)
     {
         this.eventType = eventType;
         this.targetObject = targetObject;

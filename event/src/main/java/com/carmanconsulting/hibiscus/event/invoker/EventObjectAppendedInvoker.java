@@ -4,7 +4,7 @@ import com.carmanconsulting.hibiscus.event.EventTypeEnum;
 
 import java.lang.reflect.Method;
 
-public class EventObjectAppendedInvoker extends EventListenerInvoker
+public class EventObjectAppendedInvoker extends ExactMatchInvoker
 {
 //----------------------------------------------------------------------------------------------------------------------
 // Constructors

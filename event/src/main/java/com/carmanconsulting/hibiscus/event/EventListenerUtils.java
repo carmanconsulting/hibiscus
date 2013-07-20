@@ -1,8 +1,8 @@
 package com.carmanconsulting.hibiscus.event;
 
 import com.carmanconsulting.hibiscus.event.annotation.OnEvent;
-import com.carmanconsulting.hibiscus.event.invoker.EventListenerInvoker;
 import com.carmanconsulting.hibiscus.event.invoker.EventObjectAppendedInvoker;
+import com.carmanconsulting.hibiscus.event.invoker.ExactMatchInvoker;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.proxy.ProxyFactory;
 import org.apache.commons.proxy.factory.javassist.JavassistProxyFactory;
@@ -29,7 +29,7 @@ public class EventListenerUtils
         {
             if (isExactMatch(proxyMethod, targetMethod))
             {
-                return (T) proxyFactory.createInvokerProxy(new EventListenerInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[]{eventType.getEventType().baseListenerInterface()});
+                return (T) proxyFactory.createInvokerProxy(new ExactMatchInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[]{eventType.getEventType().baseListenerInterface()});
             }
             else if(isEventObjectAppendedMatch(proxyMethod, targetMethod))
             {

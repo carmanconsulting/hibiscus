@@ -1,10 +1,13 @@
 package com.carmanconsulting.hibiscus.event.util;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
+@Table(name="TEST_ENTITY")
 public class TestEntity
 {
 //----------------------------------------------------------------------------------------------------------------------
@@ -32,12 +35,7 @@ public class TestEntity
 
         TestEntity that = (TestEntity) o;
 
-        if (!id.equals(that.id))
-        {
-            return false;
-        }
-
-        return true;
+        return id.equals(that.id);
     }
 
     @Override
