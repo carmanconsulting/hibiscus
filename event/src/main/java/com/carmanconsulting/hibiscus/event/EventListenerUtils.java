@@ -33,10 +33,12 @@ public final class EventListenerUtils
         {
             if (isExactMatch(proxyMethod, targetMethod))
             {
+                LOGGER.info("Creating exact match {} event listener proxy for method {}.{}()...", eventType.getEventType().eventName(), targetMethod.getDeclaringClass().getSimpleName(), targetMethod.getName());
                 return (T) PROXY_FACTORY.createInvokerProxy(new ExactMatchInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[]{eventType.getEventType().baseListenerInterface()});
             }
             else if(isEventObjectAppendedMatch(proxyMethod, targetMethod))
             {
+                LOGGER.info("Creating type-safe ({}) {} event listener proxy for method {}.{}()...", targetMethod.getParameterTypes()[1].getSimpleName(), eventType.getEventType().eventName(), targetMethod.getDeclaringClass().getSimpleName(), targetMethod.getName());
                 return (T) PROXY_FACTORY.createInvokerProxy(new EventObjectAppendedInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[] {eventType.getEventType().baseListenerInterface()});
             }
         }
@@ -80,7 +82,6 @@ public final class EventListenerUtils
         T listener = createListener(eventType, targetObject, targetMethod);
         if (listener != null)
         {
-            LOGGER.info("Registering method {}.{}() as {} event listener.", targetMethod.getDeclaringClass().getName(), targetMethod.getName(), eventType.getEventType().eventName());
             registry.appendListeners(eventType.getEventType(), listener);
         }
     }
