@@ -3,6 +3,8 @@ package com.carmanconsulting.hibiscus.event.spring;
 import com.carmanconsulting.hibiscus.event.EventListenerUtils;
 import com.carmanconsulting.hibiscus.event.annotation.EventListener;
 import org.hibernate.event.service.spi.EventListenerRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -11,6 +13,8 @@ import java.util.Map;
 
 public abstract class AbstractEventListenerBootstrap implements ApplicationContextAware
 {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
 //----------------------------------------------------------------------------------------------------------------------
 // Fields
 //----------------------------------------------------------------------------------------------------------------------
@@ -42,6 +46,7 @@ public abstract class AbstractEventListenerBootstrap implements ApplicationConte
         final Map<String,Object> beans = applicationContext.getBeansWithAnnotation(EventListener.class);
         for (Map.Entry<String, Object> beanEntry : beans.entrySet())
         {
+            logger.info("Searching bean {} for event handler methods.", beanEntry.getKey());
             EventListenerUtils.registerAnnotatedListeners(getEventListenerRegistry(), beanEntry.getValue());
         }
     }

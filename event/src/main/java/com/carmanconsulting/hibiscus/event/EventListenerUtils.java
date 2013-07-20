@@ -8,6 +8,8 @@ import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.proxy.ProxyFactory;
 import org.apache.commons.proxy.factory.javassist.JavassistProxyFactory;
 import org.hibernate.event.service.spi.EventListenerRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 
@@ -18,6 +20,7 @@ public final class EventListenerUtils
 //----------------------------------------------------------------------------------------------------------------------
 
     private static final ProxyFactory PROXY_FACTORY = new JavassistProxyFactory();
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventListenerUtils.class);
 
 //----------------------------------------------------------------------------------------------------------------------
 // Static Methods
@@ -77,6 +80,7 @@ public final class EventListenerUtils
         T listener = createListener(eventType, targetObject, targetMethod);
         if (listener != null)
         {
+            LOGGER.info("Registering method {}.{}() as {} event listener.", targetMethod.getDeclaringClass().getName(), targetMethod.getName(), eventType.getEventType().eventName());
             registry.appendListeners(eventType.getEventType(), listener);
         }
     }
