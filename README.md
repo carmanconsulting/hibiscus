@@ -1,21 +1,33 @@
 # Event Listeners
 
-The hibiscus-event library contains utility classes for implementing Hibernate event listeners more easily (especially
-with Spring).  You can write a class like this:
+Hibernate event listeners can be very powerful.  However, Spring doesn't include a nice way to register Spring-managed
+beans as Hibernate event listeners.  The hibiscus-event library contains utility classes which make it easy to register
+your Spring-managed beans as Hibernate event listeners.
+
+## Writing an Event Listener
+
+Writing an event listener is easy with Hibiscus!  All you have to do is annotate your bean class with the @EventListener
+annotation (which allows it to be "scanned" by Spring) and annotate each event handler method with an @OnEvent
+annotation.
 
 ```java
 @EventListener
 public class MyEventListener
 {
   @OnEvent(EventTypeEnum.POST_COMMIT_INSERT)
-  public void onPostInsert(PostInsertEvent e)
+  public void afterInsert(PostInsertEvent e)
   {
     // Do something
   }
 }
 ```
 
-In your spring configuration, you must include a "bootstrap" bean:
+This will allow your afterInsert() method to be called whenever a "post commit insert" event happens in Hibernate.  In
+order to have your event listeners registered, you must first "bootstrap" them.
+
+## Bootstrapping
+
+In your Spring configuration, you will need to include a "bootstrap" bean:
 
 ```xml
 <beans>
@@ -25,10 +37,13 @@ In your spring configuration, you must include a "bootstrap" bean:
 </beans>
 ```
 
-Your @EventListener-annotated class will automatically included (assuming you use annotation config) and an event
-listener will be registered which calls your onPostInsert() event handler method.
+This bean will search the Spring context for all @EventListener-annotated beans and register event listeners for all
+@OnEvent-annotated methods on them.
 
-You can also use type-safe event handler methods:
+## Type-Safe Events
+
+Sometimes, you only want to handle events for certain entity types.  All you need to do is add a parameter to your event
+handler method for the entity type you wish to support.
 
 ```java
 @EventListener
@@ -43,4 +58,3 @@ public class MyEventListener
 ```
 
 Only events for entities of type MyEntity will be delivered to this event listener!
-
