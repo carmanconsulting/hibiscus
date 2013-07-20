@@ -37,8 +37,8 @@ In your Spring configuration, you will need to include a "bootstrap" bean:
 </beans>
 ```
 
-This bean will search the Spring context for all @EventListener-annotated beans and register event listeners for all
-@OnEvent-annotated methods on them.
+This bean will search the Spring context for all @EventListener-annotated beans and register event listeners for each
+@OnEvent-annotated methods contained in them.
 
 ## Type-Safe Events
 
