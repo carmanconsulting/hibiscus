@@ -38,7 +38,7 @@ public final class EventListenerUtils
             }
             else if(isEventObjectAppendedMatch(proxyMethod, targetMethod))
             {
-                LOGGER.info("Creating type-safe ({}) {} event listener proxy for method {}.{}()...", targetMethod.getParameterTypes()[1].getSimpleName(), eventType.getEventType().eventName(), targetMethod.getDeclaringClass().getSimpleName(), targetMethod.getName());
+                LOGGER.info("Creating type-safe ({}) {} event listener proxy for method {}.{}()...", targetMethod.getParameterTypes()[targetMethod.getParameterTypes().length - 1].getSimpleName(), eventType.getEventType().eventName(), targetMethod.getDeclaringClass().getSimpleName(), targetMethod.getName());
                 return (T) PROXY_FACTORY.createInvokerProxy(new EventObjectAppendedInvoker(eventType, targetObject, targetMethod, proxyMethod), new Class[] {eventType.getEventType().baseListenerInterface()});
             }
         }
